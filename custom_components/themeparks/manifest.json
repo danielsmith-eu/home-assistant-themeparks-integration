@@ -1,0 +1,13 @@
+{
+  "domain": "themeparks",
+  "name": "Theme Park Wait Times",
+  "config_flow": true,
+  "documentation": "https://www.home-assistant.io/integrations/themeparks",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": ["@danielsmith-eu"],
+  "iot_class": "cloud_polling"
+}

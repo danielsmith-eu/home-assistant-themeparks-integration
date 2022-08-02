@@ -1,0 +1,16 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Theme Parks",
+        "description": "Select a Theme Park to add to tracker",
+        "data": {
+          "parkname": "Theme Park"
+        },
+        "data_description": {
+          "parkname": "The Theme Park to track"
+        }
+      }
+    }
+  }
+}
