@@ -28,5 +28,5 @@ A smart move would be to set automations when your ride of choice hits a low wai
 
 * The device added for a theme park doesn't show any information or link to the entities. Looks like a quick fix.
 * No customisations.
-
+* API access is in the Integration, this should be move to PyPi so that we can add this to HA without using HACS.
 
