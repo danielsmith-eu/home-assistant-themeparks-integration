@@ -10,7 +10,7 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import TIME_MINUTES
+from homeassistant.const import UnitOfTime
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import (
@@ -52,7 +52,7 @@ class AttractionSensor(SensorEntity, CoordinatorEntity):
         super().__init__(coordinator)
         self.idx = idx
         self._attr_name = coordinator.data[idx][NAME]
-        self._attr_native_unit_of_measurement = TIME_MINUTES
+        self._attr_native_unit_of_measurement = UnitOfTime.TIME_MINUTES
         self._attr_device_class = SensorDeviceClass.DURATION
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_native_value = self.coordinator.data[self.idx][TIME]
