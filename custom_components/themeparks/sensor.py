@@ -52,7 +52,7 @@ class AttractionSensor(SensorEntity, CoordinatorEntity):
         super().__init__(coordinator)
         self.idx = idx
         self._attr_name = coordinator.data[idx][NAME]
-        self._attr_native_unit_of_measurement = UnitOfTime.TIME_MINUTES
+        self._attr_native_unit_of_measurement = UnitOfTime.MINUTES
         self._attr_device_class = SensorDeviceClass.DURATION
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_native_value = self.coordinator.data[self.idx][TIME]
