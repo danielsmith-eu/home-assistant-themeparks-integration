@@ -18,7 +18,7 @@ from homeassistant.helpers.update_coordinator import (
     DataUpdateCoordinator,
 )
 
-from .const import DOMAIN, NAME, TIME
+from .const import DOMAIN, NAME, TIME, ID
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -31,7 +31,7 @@ async def async_setup_entry(
     """Set up the sensor platform."""
 
     my_api = hass.data[DOMAIN][config_entry.entry_id]
-    coordinator = ThemeParksCoordinator(hass, my_api)
+    coordinator = ThemeParksCoordinator(hass, my_api, config_entry.entry_id)
 
     await coordinator.async_config_entry_first_refresh()
 
@@ -56,6 +56,7 @@ class AttractionSensor(SensorEntity, CoordinatorEntity):
         self._attr_device_class = SensorDeviceClass.DURATION
         self._attr_state_class = SensorStateClass.MEASUREMENT
         self._attr_native_value = self.coordinator.data[self.idx][TIME]
+        self._attr_unique_id = f"{coordinator.entry_id}_{coordinator.data[idx][ID]}"
 
         _LOGGER.debug("Adding AttractionSensor called %s", self._attr_name)
 
@@ -75,7 +76,7 @@ class AttractionSensor(SensorEntity, CoordinatorEntity):
 class ThemeParksCoordinator(DataUpdateCoordinator):
     """Theme parks coordinator."""
 
-    def __init__(self, hass, api):
+    def __init__(self, hass, api, entry_id):
         """Initialize theme parks coordinator."""
         super().__init__(
             hass,
@@ -84,6 +85,7 @@ class ThemeParksCoordinator(DataUpdateCoordinator):
             update_interval=timedelta(minutes=5),
         )
         self.api = api
+        self.entry_id = entry_id
 
     async def _async_update_data(self):
         """Fetch data from API endpoint."""
